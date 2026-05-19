@@ -1,0 +1,26 @@
+# Reference materials
+_reference_*
+_*.py
+
+# PDF source materials
+*.pdf
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Node / build (just in case)
+node_modules/
+dist/
+.cache/
+
+# Temp
+tmp_*
+*.log
