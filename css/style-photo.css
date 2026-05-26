@@ -1,0 +1,179 @@
+/* ============================================================
+   KYOTO BAMBOO — v5 PHOTO ENHANCED
+   写真強化用追加スタイル（既存 style.css / style-extra.css に上乗せ）
+   - HERO PHOTO BAND（フルブリード竹林）
+   - SPACER BAND（セクション間の大判写真）
+   - GALLERY セクション
+   - ENTRY 写真強化（既存entry__mediaを拡張）
+   - photo credit 表記
+   ============================================================ */
+
+/* ============================================================
+   HERO PHOTO BAND — HEROの直下にフルブリード写真
+   ============================================================ */
+.hero-band {
+    margin: 0;
+    width: 100%;
+    height: clamp(300px, 50vh, 600px);
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid var(--c-line);
+    border-bottom: 1px solid var(--c-line);
+}
+.hero-band img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 8s ease-in-out;
+}
+.hero-band:hover img { transform: scale(1.05); }
+.hero-band figcaption {
+    position: absolute;
+    bottom: 1rem;
+    right: clamp(1.5rem, 5vw, 6rem);
+    background: rgba(10, 10, 10, 0.55);
+    color: var(--c-paper);
+    padding: 0.4rem 1rem;
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+/* ============================================================
+   SPACER BAND — セクション間に挿入する大判写真
+   ============================================================ */
+.spacer-band {
+    margin: 0;
+    width: 100%;
+    height: clamp(280px, 40vh, 480px);
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid var(--c-line);
+    border-bottom: 1px solid var(--c-line);
+}
+.spacer-band img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.spacer-band figcaption {
+    position: absolute;
+    bottom: 1rem;
+    right: clamp(1.5rem, 5vw, 6rem);
+    background: rgba(255, 255, 255, 0.88);
+    color: var(--c-ink);
+    padding: 0.4rem 1rem;
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+}
+
+/* ============================================================
+   ENTRY 写真強化 — Photo Credit 表記追加
+   ============================================================ */
+.entry__credit {
+    margin-top: 1.2rem !important;
+    font-family: var(--f-mono);
+    font-size: 0.72rem !important;
+    letter-spacing: 0.1em;
+    color: var(--c-ink-faint);
+    font-weight: 400 !important;
+}
+
+/* ============================================================
+   GALLERY — Kyoto Bamboo Photo Journal
+   ============================================================ */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 0;
+    border-top: 1px solid var(--c-line);
+    border-left: 1px solid var(--c-line);
+}
+.gallery-cell {
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    border-right: 1px solid var(--c-line);
+    border-bottom: 1px solid var(--c-line);
+    background: var(--c-paper-2);
+}
+.gallery-cell--tall {
+    grid-row: span 2;
+}
+.gallery-cell--wide {
+    grid-column: span 2;
+}
+.gallery-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 1.0s var(--ease);
+}
+.gallery-cell:hover img {
+    transform: scale(1.04);
+}
+.gallery-cell figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.6rem 1rem;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0));
+    color: var(--c-paper);
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.gallery-cell:hover figcaption {
+    opacity: 1;
+}
+.gallery-note {
+    margin-top: 1rem;
+    text-align: right;
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--c-ink-faint);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 180px;
+    }
+    .gallery-cell--tall {
+        grid-row: span 2;
+    }
+    .gallery-cell--wide {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+}
+
+@media (max-width: 640px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 240px;
+    }
+    .gallery-cell--tall,
+    .gallery-cell--wide {
+        grid-row: auto;
+        grid-column: auto;
+    }
+    .hero-band,
+    .spacer-band {
+        height: 280px;
+    }
+}
